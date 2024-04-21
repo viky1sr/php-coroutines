@@ -13,13 +13,15 @@ $co->coroutine(function () use($co){
 
     for($i = 1; $i <= $maxWg; $i++){
         php($co,function () use($wg,$i){
+            sleep(2);
             defer(function() use ($wg) { $wg->done(); });
             return "Testing routine $i \n";
         });
     }
+    $wg->wait();
 });
 
-var_dump($co->fetchAll());die;
+var_dump($co->fetchAll());
 $end_time = microtime(true);
 $total_time = number_format($end_time - $start_time,2);
 echo "Total time: $total_time seconds\n";

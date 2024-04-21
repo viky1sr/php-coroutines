@@ -3,6 +3,11 @@
 use Visry\Coroutine;
 
 if(!function_exists("php")){
+    /**
+     * @param Coroutine $co
+     * @param callable $callback
+     * @return void
+     */
     function php(Coroutine $co, callable $callback): void
     {
         if (pcntl_fork()) { return; }
@@ -16,6 +21,10 @@ if(!function_exists("php")){
 }
 
 if(!function_exists("defer")){
+    /**
+     * @param callable $callback
+     * @return void
+     */
     function defer(callable $callback): void
     {
         register_shutdown_function($callback);

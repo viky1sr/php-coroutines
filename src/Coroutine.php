@@ -17,24 +17,38 @@ class Coroutine
         );
     }
 
+    /**
+     * @return mixed
+     */
     public function read(): mixed
     {
         $data = stream_socket_recvfrom($this->in, $this->size);
         return $data !== false ? unserialize($data) : false;
     }
 
+    /**
+     * @param $data
+     * @return false|int
+     */
     public function write($data): false|int
     {
         $serializedData = serialize($data);
-        return stream_socket_sendto($this->out, $serializedData, 0, '0.0.0.0');
+        return stream_socket_sendto($this->out, $serializedData);
     }
 
+    /**
+     * @param callable $callback
+     * @return $this
+     */
     public function coroutine(callable $callback): static
     {
         php($this, $callback);
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function fetchAll() : array
     {
         $results = [];
