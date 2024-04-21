@@ -1,0 +1,22 @@
+{
+    "name": "visry/coroutines",
+    "description": "PHP Concurrency",
+    "autoload": {
+        "psr-4": {
+            "Visry\\": "src/"
+        },
+        "files": [
+            "src/Scripts/function.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "visry",
+            "email": "viky.muhammad@jamkrindo.co.id"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-pcntl": "*"
+    }
+}
